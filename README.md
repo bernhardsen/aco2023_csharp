@@ -20,3 +20,7 @@ Not really happy about this one. I feel the solution became very verbose, and ug
 It works, but yeah... When I reimplemented this in Rust, I did it by building
 a list of stuff-on-the-map, instead of bytes representing all positions on the map.
 That solution was much more elegant, and would be easier to continue working with.
+
+### Day 4: Scratchcards
+Pretty simple task. So simple that I went back to a procedural solution,
+and didn't bother creating a class for it.
