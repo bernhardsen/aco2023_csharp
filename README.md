@@ -24,3 +24,9 @@ That solution was much more elegant, and would be easier to continue working wit
 ### Day 4: Scratchcards
 Pretty simple task. So simple that I went back to a procedural solution,
 and didn't bother creating a class for it.
+
+### Day 5: If You Give A Seed A Fertilizer
+First kinda tricky problem of the year. Part 1 was trivial.
+Did part 2 with brute force first, and it took about 20 minutes.
+Later I refactored into looking up whole ranges at once,
+which resulted in a run-time of 4 ms on my machine (for part 2 only).
