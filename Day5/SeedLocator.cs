@@ -3,14 +3,7 @@
 public class SeedLocator
 {
     private readonly List<long> _seedLocations;
-
-    private readonly List<LocationMapper> _seedToSoil;
-    private readonly List<LocationMapper> _soilToFertilizer;
-    private readonly List<LocationMapper> _fertilizerToWater;
-    private readonly List<LocationMapper> _waterToLight;
-    private readonly List<LocationMapper> _lightToTemperature;
-    private readonly List<LocationMapper> _temperatureToHumidity;
-    private readonly List<LocationMapper> _humidityToLocation;
+    private readonly List<List<LocationMapper>> _mappers;
     
     public SeedLocator(string path)
     {
@@ -22,26 +15,23 @@ public class SeedLocator
             .Select(it => Convert.ToInt64(it))
             .ToList();
 
-        _seedToSoil = PartToLocationMapper(parts[1].Split("\n").ToList());
-        _soilToFertilizer = PartToLocationMapper(parts[2].Split("\n").ToList());
-        _fertilizerToWater = PartToLocationMapper(parts[3].Split("\n").ToList());
-        _waterToLight = PartToLocationMapper(parts[4].Split("\n").ToList());
-        _lightToTemperature = PartToLocationMapper(parts[5].Split("\n").ToList());
-        _temperatureToHumidity = PartToLocationMapper(parts[6].Split("\n").ToList());
-        _humidityToLocation = PartToLocationMapper(parts[7].Split("\n").ToList());
+        _mappers = new List<List<LocationMapper>>
+        {
+            PartToLocationMapper(parts[1].Split("\n").ToList()),
+            PartToLocationMapper(parts[2].Split("\n").ToList()),
+            PartToLocationMapper(parts[3].Split("\n").ToList()),
+            PartToLocationMapper(parts[4].Split("\n").ToList()),
+            PartToLocationMapper(parts[5].Split("\n").ToList()),
+            PartToLocationMapper(parts[6].Split("\n").ToList()),
+            PartToLocationMapper(parts[7].Split("\n").ToList()),
+        };
+
     }
     
     public void SolvePart1()
     {
-        var lowest = _seedLocations
-            .Select(location => LookUpLocation(_seedToSoil, location))
-            .Select(location => LookUpLocation(_soilToFertilizer, location))
-            .Select(location => LookUpLocation(_fertilizerToWater, location))
-            .Select(location => LookUpLocation(_waterToLight, location))
-            .Select(location => LookUpLocation(_lightToTemperature, location))
-            .Select(location => LookUpLocation(_temperatureToHumidity, location))
-            .Select(location => LookUpLocation(_humidityToLocation, location))
-            .Min();
+        var lowest = _seedLocations.Select(location =>
+            _mappers.Aggregate(location, (loc, mapper) => LookUpLocation(mapper, loc))).Min();
         Console.WriteLine($"The lowest possible location is {lowest}.");
     }
 
@@ -49,13 +39,9 @@ public class SeedLocator
     {
         var lowest = _seedLocations.Chunk(2).Select(locs =>
         {
-            return MakeRangesFromRange(_seedToSoil, new LongRange(locs[0], locs[0] + locs[1]))
-                .SelectMany(r => MakeRangesFromRange(_soilToFertilizer, r))
-                .SelectMany(r => MakeRangesFromRange(_fertilizerToWater, r))
-                .SelectMany(r => MakeRangesFromRange(_waterToLight, r))
-                .SelectMany(r => MakeRangesFromRange(_lightToTemperature, r))
-                .SelectMany(r => MakeRangesFromRange(_temperatureToHumidity, r))
-                .SelectMany(r => MakeRangesFromRange(_humidityToLocation, r))
+            var l = new List<LongRange> { new LongRange(locs[0], locs[0] + locs[1]) };
+            return _mappers.Aggregate(l, (ranges, mapper) =>
+                ranges.SelectMany(r => MakeRangesFromRange(mapper, r)).ToList())
                 .Select(r => r.Start)
                 .Min();
         }).Min();
