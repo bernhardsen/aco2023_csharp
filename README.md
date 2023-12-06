@@ -30,3 +30,9 @@ First kinda tricky problem of the year. Part 1 was trivial.
 Did part 2 with brute force first, and it took about 20 minutes.
 Later I refactored into looking up whole ranges at once,
 which resulted in a run-time of 4 ms on my machine (for part 2 only).
+
+### Day 6: Wait For It
+Pretty simple problem. I had done it in Rust and Python already.
+Tried to make this solution even shorter than those.
+I think I managed to keep most of the readability, except maybe the `CalculateLeniency` method.
+That one is just the algebraic formula I figured out just smashed together into one line.

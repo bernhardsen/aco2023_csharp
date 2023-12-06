@@ -70,7 +70,7 @@ public class SeedLocator
             try
             {
                 var mapper = mappers.First(m => range.Start >= m.SourceStart && range.Start < m.SourceStart + m.Length);
-                if (range.Start - mapper.SourceStart + (range.End - range.Start)  <= mapper.Length)
+                if (range.Start - mapper.SourceStart + (range.End - range.Start) <= mapper.Length)
                 {
                     outRanges.Add(new LongRange(range.Start + mapper.Translation, range.End + mapper.Translation));
                     return outRanges;
