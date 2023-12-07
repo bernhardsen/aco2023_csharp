@@ -36,3 +36,7 @@ Pretty simple problem. I had done it in Rust and Python already.
 Tried to make this solution even shorter than those.
 I think I managed to keep most of the readability, except maybe the `CalculateLeniency` method.
 That one is just the algebraic formula I figured out just smashed together into one line.
+
+### Day 7: Camel Cards
+Fun problem. Same solution as the other languages. I do like the LINQ statements,
+and how the code reads. I think C# is my favorite solution for this problem.
