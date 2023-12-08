@@ -40,3 +40,9 @@ That one is just the algebraic formula I figured out just smashed together into 
 ### Day 7: Camel Cards
 Fun problem. Same solution as the other languages. I do like the LINQ statements,
 and how the code reads. I think C# is my favorite solution for this problem.
+
+### Day 8: Haunted Wasteland
+Hated this one. Messed up the part 2 brute force. Idk why it wouldnt work,
+but took a break, came back and re-did it and it worked. Stupid task :(
+Not in the mood to make it any better than it is.
+I'll port it to the other languages another day.
