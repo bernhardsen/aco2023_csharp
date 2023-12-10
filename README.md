@@ -54,3 +54,9 @@ I don't know yet if I like it or not. Anyway, I changed up how I do the executio
 and what does the printing etc. Previously I had done the `Console.WriteLine` inside
 the solver class. Now instead I make the solver return the answer, and the "Program"
 is responsible for all the formatting and output. 
+
+### Day 10: Pipe Maze
+I don't know how to write this in a neat way.
+Maybe some kind of state machine would be better. I think it would make the code
+at least LOOK easier to understand, but I'm not sure.
+Maybe I'll go back after AoC is over and refactor this.
