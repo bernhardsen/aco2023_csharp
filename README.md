@@ -46,3 +46,11 @@ Hated this one. Messed up the part 2 brute force. Idk why it wouldnt work,
 but took a break, came back and re-did it and it worked. Stupid task :(
 Not in the mood to make it any better than it is.
 I'll port it to the other languages another day.
+
+### Day 9: Mirage Maintenance
+Fun easy problem. The way the IDE wants me to format the code, adds up so many extra lines.
+I don't think it ends up being more code, it's just spread out over more lines.
+I don't know yet if I like it or not. Anyway, I changed up how I do the execution,
+and what does the printing etc. Previously I had done the `Console.WriteLine` inside
+the solver class. Now instead I make the solver return the answer, and the "Program"
+is responsible for all the formatting and output. 
